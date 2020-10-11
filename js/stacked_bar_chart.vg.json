@@ -1,6 +1,6 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v4.json",
-  "data": {"url": "/data/COVID_19.csv"},
+  "data": {"url": "https://raw.githubusercontent.com/KaneSec/vega_lite/main/data/COVID_19.csv"},
   "mark": {"type": "bar", "cornerRadiusTopLeft": 3, "cornerRadiusTopRight": 3},
   "encoding": {
     "x": {"timeUnit": "yearmonth", "field": "date", "type": "ordinal"},
