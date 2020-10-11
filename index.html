@@ -9,11 +9,18 @@
 </head>
 <body>
 
-<div id="vis"></div>
+<div id="bar_chart"></div>
+  
+<div id="stacked_bar_chart"></div>
 
 <script type="text/javascript">
   var spec = "basic-bar-chart.vg.json";
-  vegaEmbed('#vis', spec).then(function(result) {
+  vegaEmbed('#bar_chart', spec).then(function(result) {
+    // Access the Vega view instance (https://vega.github.io/vega/docs/api/view/) as result.view
+  }).catch(console.error);
+  
+  var spec = "stacked_bar_chart.vg.json";
+  vegaEmbed('#stacked_bar_chart', spec).then(function(result) {
     // Access the Vega view instance (https://vega.github.io/vega/docs/api/view/) as result.view
   }).catch(console.error);
 </script>
