@@ -19,7 +19,7 @@
         "fields": ["Active"]
       }
     },
-    {"calculate": "1 + datum.Active", "as": "Active Cases"}
+    {"calculate": "datum.Active + 0.1", "as": "Active Cases"}
   ],
   "projection": {
     "type": "equirectangular"
