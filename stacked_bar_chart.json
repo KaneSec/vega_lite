@@ -1,0 +1,10 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v4.json",
+  "data": {"url": "https://raw.githubusercontent.com/datasets/covid-19/master/data/countries-aggregated.csv"},
+  "mark": {"type": "bar", "cornerRadiusTopLeft": 3, "cornerRadiusTopRight": 3},
+  "encoding": {
+    "x": {"timeUnit": "yearmonth", "field": "Date", "type": "ordinal"},
+    "y": {"aggregate": "sum", "field":"Deaths"},
+    "color": {"field": "Country"}
+  }
+}
