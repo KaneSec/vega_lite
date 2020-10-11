@@ -19,7 +19,7 @@
         "fields": ["Active"]
       }
     },
-    {"calculate": "1 + datum.Active", "as": "act"}
+    {"calculate": "1 + datum.Active", "as": "Active_plus_1"}
   ],
   "projection": {
     "type": "equirectangular"
@@ -29,7 +29,7 @@
     },
   "encoding": {
     "color": {
-      "field": "act",
+      "field": "Active_plus_1",
       "type": "quantitative",
       "scale": {"type": "log"}
     },
