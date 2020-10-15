@@ -13,70 +13,139 @@
       "bind": {"input": "range", "min": 0, "max": 100000000, "step": 1000000}
     }
   ],
-  "transform":[
+  "transform": [
     {"filter": "datum.Active > 0"},
     {"filter": "datum.Deaths > 0"},
     {"filter": "datum.Population > Population_Above"},
-    {"calculate": "datum.Confirmed/datum.Population", "as": "Cases per 10,000 Population"}
+    {
+      "calculate": "datum.Confirmed/datum.Population * 10000",
+      "as": "Cases per 10,000 Population"
+    }
   ],
-   "encoding": {
-      "x": {
-        "field": "Confirmed",
-        "type": "quantitative",
-        "title":"Confirmed Cases",
-        "axis": {"tickCount": 7},
-        "scale": {"type": "log",  "domain":[1, 10000000]}
-      },
-      "y": {
-        "field": "Deaths",
-        "type": "quantitative",
-        "axis": { "tickCount": 6},
-        "scale": {"type": "log", "domain":[1, 1000000]}
-      }
+  "encoding": {
+    "x": {
+      "field": "Confirmed",
+      "type": "quantitative",
+      "title": "Confirmed Cases",
+      "axis": {"tickCount": 7},
+      "scale": {"type": "log", "domain": [1, 10000000]}
     },
-  "layer":[{
-    "selection": {
-      "continent_selection": {
-        "type": "multi", "fields": ["Continent"], "bind": "legend"
-      }
-    },
-    "mark": "point",
-    "encoding": {
-      "size": {"field": "Population", "type": "quantitative",  "scale": {"range": [30, 500]},
-        "legend":{
-           "labelAlign": "right","labelOffset": 70
-        }},
-      "fill": {"field": "Continent",  "type": "nominal","scale": {"domain":["North America", "South America", "Europe", "Africa", "Asia", "Oceania"], "range": ["#e41a1c", "#984ea3", "#ff7f00", "#a6cee3", "#377eb8", "#a65628"]}},
-      "color": {"field": "Continent", "type": "nominal","scale": {"domain":["North America", "South America", "Europe", "Africa", "Asia", "Oceania"],"range": ["#e41a1c", "#984ea3", "#ff7f00", "#a6cee3", "#377eb8", "#a65628"]}
-      },
-      "opacity": {
-        "condition": {"selection": "continent_selection", "value": 0.6},
-        "value": 0.2
-      },
-      "tooltip": [
-        {"field": "Country", "type": "nominal"},
-        {"field": "Confirmed", "type": "quantitative", "format": ","},
-        {"field": "Active", "type": "quantitative", "format": ","},
-        {"field": "Deaths", "type": "quantitative", "format": ","},
-        {"field": "Recovered", "type": "quantitative", "format": ","}]
+    "y": {
+      "field": "Deaths",
+      "type": "quantitative",
+      "axis": {"tickCount": 6},
+      "scale": {"type": "log", "domain": [1, 1000000]}
     }
   },
-  {
-    "mark": {
-      "type": "text",
-      "align": "right",
-      "baseline": "middle",
-      "dx": -12,
-      "fontSize": 11.5,
-      "fontStyle": "italic"
+  "layer": [
+    {
+      "selection": {
+        "continent_selection": {
+          "type": "multi",
+          "fields": ["Continent"],
+          "bind": "legend"
+        }
+      },
+      "mark": "point",
+      "encoding": {
+        "size": {
+          "field": "Population",
+          "type": "quantitative",
+          "scale": {
+            "type": "threshold",
+            "domain":[1000000, 10000000, 50000000, 100000000, 500000000],
+            "range": [10, 50, 150, 200, 300, 400]
+          },
+          "legend":{
+            "format": ".1s"
+          }
+        },
+        "fill": {
+          "field": "Continent",
+          "type": "nominal",
+          "scale": {
+            "domain": [
+              "North America",
+              "South America",
+              "Europe",
+              "Africa",
+              "Asia",
+              "Oceania"
+            ],
+            "range": [
+              "#e41a1c",
+              "#984ea3",
+              "#ff7f00",
+              "#a6cee3",
+              "#377eb8",
+              "#a65628"
+            ]
+          }
+        },
+        "color": {
+          "field": "Continent",
+          "type": "nominal",
+          "scale": {
+            "domain": [
+              "North America",
+              "South America",
+              "Europe",
+              "Africa",
+              "Asia",
+              "Oceania"
+            ],
+            "range": [
+              "#e41a1c",
+              "#984ea3",
+              "#ff7f00",
+              "#a6cee3",
+              "#377eb8",
+              "#a65628"
+            ]
+          }
+        },
+        "opacity": {
+          "condition": {"selection": "continent_selection", "value": 0.6},
+          "value": 0.2
+        },
+        "tooltip": [
+          {"field": "Country", "type": "nominal"},
+          {"field": "Confirmed", "type": "quantitative", "format": ","},
+          {"field": "Active", "type": "quantitative", "format": ","},
+          {"field": "Deaths", "type": "quantitative", "format": ","},
+          {"field": "Recovered", "type": "quantitative", "format": ","},
+          {"field": "Cases per 10,000 Population", "type": "quantitative", "format": ".2f"}
+        ]
+      }
     },
-    "encoding":{
-      "text": {"field": "Country", "type": "nominal"},
-      "color": {"value": "black"},
-      "opacity": {
-        "condition": {"test": "datum['Country'] == 'China' || datum['Country'] == 'Singapore' || datum['Country'] == 'Australia' || datum['Country'] == 'New Zealand' || datum['Country'] == 'Italy' || datum['Country'] == 'Yemen' ||  datum['Country'] == 'United States'", "value": 1},
-        "value": 0.0
+    {
+      "mark": {
+        "type": "text",
+        "align": "right",
+        "baseline": "middle",
+        "dx": -12,
+        "fontSize": 11.5,
+        "fontStyle": "italic"
+      },
+      "encoding": {
+        "text": {"field": "Country", "type": "nominal"},
+        "color": {"value": "black"},
+        "opacity": {
+          "condition": {
+            "test": "datum['Country'] == 'China' || datum['Country'] == 'Singapore' || datum['Country'] == 'Australia' || datum['Country'] == 'New Zealand' || datum['Country'] == 'Italy' || datum['Country'] == 'Yemen' ||  datum['Country'] == 'United States'",
+            "value": 1
+          },
+          "value": 0
+        },
+        "tooltip": [
+          {"field": "Country", "type": "nominal"},
+          {"field": "Confirmed", "type": "quantitative", "format": ","},
+          {"field": "Active", "type": "quantitative", "format": ","},
+          {"field": "Deaths", "type": "quantitative", "format": ","},
+          {"field": "Recovered", "type": "quantitative", "format": ","},
+          {"field": "Cases per 10,000 Population", "type": "quantitative", "format": ".2f"}
+        ]
       }
     }
-  }]
+  ]
 }
