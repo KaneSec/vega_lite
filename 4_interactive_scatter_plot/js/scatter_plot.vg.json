@@ -1,0 +1,35 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v4.json",
+  "height": 600,
+  "width": 600,
+  "description": "A scatterplot showing body mass and flipper lengths of penguins.",
+  "data": {
+    "url": "https://raw.githubusercontent.com/KaneSec/vega_lite/main/4_interactive_scatter_plot/data/COVID_19_13_Oct_2020.csv"
+  },
+  "transform":[
+    {"calculate": "datum.Active + 0.1", "as": "Active Cases"},
+    {"calculate": "datum.Deaths + 0.1", "as": "Total Deaths"}
+  ],
+  "mark": "point",
+  "encoding": {
+    "x": {
+      "field": "Confirmed",
+      "type": "quantitative",
+      "scale": {"type": "log", "zero":true}
+    },
+    "y": {
+      "field": "Total Deaths",
+      "type": "quantitative",
+      "scale": {"type": "log", "zero":true}
+    },
+    "color": {"field": "Continent", "type": "nominal"},
+    "tooltip": [
+      {"field": "Country", "type": "nominal"},
+      {"field": "Confirmed", "type": "quantitative", "format": ",.2r"},
+      {"field": "Active", "type": "quantitative", "format": ",.2r"},
+      {"field": "Deaths", "type": "quantitative", "format": ",.2r"},
+      {"field": "Recovered", "type": "quantitative", "format": ",.2r"}
+    ]
+
+  }
+}
