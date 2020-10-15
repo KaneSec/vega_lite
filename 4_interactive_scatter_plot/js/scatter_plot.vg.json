@@ -9,17 +9,22 @@
     "params": [
     {
       "name": "Population_Above",
+
       "value": 0,
       "bind": {"input": "range", "min": 0, "max": 100000000, "step": 1000000}
     }
   ],
+  "selection": {
+    "continent_selection": {
+      "type": "multi", "fields": ["Continent"], "bind": "legend"
+    }
+  },
   "transform":[
     {"filter": "datum.Active > 0"},
     {"filter": "datum.Deaths > 0"},
     {"filter": "datum.Population > Population_Above"},
     {"calculate": "datum.Confirmed/datum.Population", "as": "Cases per 10,000 Population"}
   ],
-
   "mark": "point",
   "encoding": {
     "x": {
@@ -38,7 +43,12 @@
     "size": {"field": "Population", "type": "quantitative",  "scale": {"range": [30, 500]}
 },
     "fill": {"field": "Continent",  "type": "nominal","scale": {"domain":["North America", "South America", "Europe", "Africa", "Asia", "Oceania"], "range": ["#e41a1c", "#984ea3", "#ff7f00", "#a6cee3", "#377eb8", "#a65628"]}},
-    "color": {"field": "Continent", "type": "nominal","scale": {"domain":["North America", "South America", "Europe", "Africa", "Asia", "Oceania"],"range": ["#e41a1c", "#984ea3", "#ff7f00", "#a6cee3", "#377eb8", "#a65628"]}},
+    "color": {"field": "Continent", "type": "nominal","scale": {"domain":["North America", "South America", "Europe", "Africa", "Asia", "Oceania"],"range": ["#e41a1c", "#984ea3", "#ff7f00", "#a6cee3", "#377eb8", "#a65628"]}
+    },
+    "opacity": {
+      "condition": {"selection": "continent_selection", "value": 0.8},
+      "value": 0.2
+    },
     "tooltip": [
       {"field": "Country", "type": "nominal"},
       {"field": "Confirmed", "type": "quantitative", "format": ","},
