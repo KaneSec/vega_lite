@@ -42,7 +42,10 @@
     },
     "mark": "point",
     "encoding": {
-      "size": {"field": "Population", "type": "quantitative",  "scale": {"range": [30, 500]}},
+      "size": {"field": "Population", "type": "quantitative",  "scale": {"range": [30, 500]},
+        "legend":{
+           "labelAlign": "right","labelOffset": 70
+        }},
       "fill": {"field": "Continent",  "type": "nominal","scale": {"domain":["North America", "South America", "Europe", "Africa", "Asia", "Oceania"], "range": ["#e41a1c", "#984ea3", "#ff7f00", "#a6cee3", "#377eb8", "#a65628"]}},
       "color": {"field": "Continent", "type": "nominal","scale": {"domain":["North America", "South America", "Europe", "Africa", "Asia", "Oceania"],"range": ["#e41a1c", "#984ea3", "#ff7f00", "#a6cee3", "#377eb8", "#a65628"]}
       },
