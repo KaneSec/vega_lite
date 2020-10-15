@@ -1,7 +1,7 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v4.json",
-  "height": 800,
-  "width": 600,
+  "width": 800,
+  "height": 600,
   "title": "COVID-19 Cases per Country (13 Oct 2020)",
   "data": {
     "url": "https://raw.githubusercontent.com/KaneSec/vega_lite/main/4_interactive_scatter_plot/data/COVID_19_10_Oct_2020.csv"
