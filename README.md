@@ -24,5 +24,5 @@ https://kanesec.github.io/vega_lite/4_interactive_scatter_plot/
 https://kanesec.github.io/vega_lite/5_multiple_charts_html/
 
 Combines
-- 3. Choropleth Map, and
-- 4. Interactive Scatter Plot
+- the Choropleth Map, and
+- the Interactive Scatter Plot
