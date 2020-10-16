@@ -14,3 +14,9 @@ https://kanesec.github.io/vega_lite/3_choropleth_map/
 
 ### 4. Interactive Scatter Plot (COVID-19)
 https://kanesec.github.io/vega_lite/4_interactive_scatter_plot/
+- Tooltips
+- Text Annotation
+- Filtering with a slider
+- Selection
+- Legend fitlering
+
