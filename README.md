@@ -20,3 +20,9 @@ https://kanesec.github.io/vega_lite/4_interactive_scatter_plot/
 - Selection
 - Legend fitlering
 
+### 5. Multiple Charts (COVID-19)
+https://kanesec.github.io/vega_lite/5_multiple_charts_html/
+
+Combines
+- 3. Choropleth Map, and
+- 4. Interactive Scatter Plot
