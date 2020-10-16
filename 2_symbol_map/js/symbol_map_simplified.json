@@ -21,15 +21,15 @@
         "longitude": {"field": "longitude", "type": "quantitative"},
         "latitude": {"field": "latitude", "type": "quantitative"},
         "size": {
-              "field": "mag",
-              "type": "quantitative",
-              "scale": {"domain": [4, 8]}
-            },
-            "color": {
-              "field": "depth",
-              "type": "quantitative",
-              "scale": {"scheme": "reds"}
-            }
+          "field": "mag",
+          "type": "quantitative",
+          "scale": {"domain": [4, 8]}
+        },
+        "color": {
+          "field": "depth",
+          "type": "quantitative",
+          "scale": {"scheme": "reds"}
+        }
       }
     }
   ]
