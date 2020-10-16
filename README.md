@@ -1,4 +1,4 @@
-# vega_lite
+# Vega-lite examples
 
 The visualiastion will be shown on 
 https://kanesec.github.io/vega_lite/
