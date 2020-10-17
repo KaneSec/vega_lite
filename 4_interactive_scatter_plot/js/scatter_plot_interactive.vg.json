@@ -31,6 +31,15 @@
           "Asia",
           "Oceania"
         ],
+        "labels":[
+          "All",
+          "North America",
+          "South America",
+          "Europe",
+          "Africa",
+          "Asia",
+          "Oceania"
+        ],
         "name": "Continent Selection: "
       }
     }
