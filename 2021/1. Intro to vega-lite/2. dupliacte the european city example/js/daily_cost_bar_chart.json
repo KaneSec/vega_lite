@@ -1,0 +1,35 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "width": "container",
+    "height": "container",
+    "data": {
+        "url": "data/city_daily_cost.csv"
+    },
+    "mark": "bar",
+    "encoding": {
+        "x": {
+            "field": "daily_cost",
+            "type": "quantitative",
+            "axis": {
+                "labelColor": "#527298",
+                "labelFontSize": 12
+            },
+            "title": ""
+        },
+        "y": {
+            "field": "city",
+            "type": "nominal",
+            "title": "",
+            "axis": {
+                "labelFontSize": 19,
+                "labelFont": "sans-serif",
+                "labelColor": "#527298"
+            },
+            "sort": { "encoding": "x", "order": "ascending" }
+        }
+    },
+    "config": {
+        "background": "#F3FAF9",
+        "font": "sans-serif"
+    }
+}
