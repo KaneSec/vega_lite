@@ -1,5 +1,3 @@
-# vega_lite
-
 # Vega-lite examples
 
 ## 1. Intro to Vega-lite
