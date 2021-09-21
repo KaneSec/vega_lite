@@ -2,7 +2,7 @@
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "title": "COVID-19 Active Cases (10 Oct 2020)",
   "width": 800,
-  "height": 600,
+  "height": 500,
   "data": {
     "url": "https://raw.githubusercontent.com/KaneSec/vega_lite/main/3_choropleth_map/js/ne_110m_admin_0_countries.topojson",
     "format": {"type": "topojson", "feature": "ne_110m_admin_0_countries"}
@@ -10,10 +10,13 @@
   "projection": {"type": "equalEarth"},
   "layer":[
     {
+      "transform": [
+        {"calculate": "'Data is not available in ' + datum.properties.NAME", "as": "note"}
+      ],
       "mark": {"type": "geoshape", "fill": "lightgray", "stroke": "white"},
       "encoding": {
         "tooltip": {
-          "field": "properties.NAME"
+          "field": "note"
         }
       }
     },
@@ -30,7 +33,7 @@
           }
         }
       ],
-      "mark": {"type": "geoshape"},
+      "mark": {"type": "geoshape", "stroke": "white"},
       "encoding": {
         "color": {
           "field": "Active",
