@@ -4,7 +4,6 @@
     "repeat": ["2010", "2012", "2014", "2016", "2018", "2020"],
     "columns": 2,
     "spec": {
-        "title": "xxx",
         "projection": {
             "type": "equirectangular",
             "center": [144.4, -37.6],
