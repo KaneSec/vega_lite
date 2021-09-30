@@ -53,24 +53,13 @@
                         "field": { "repeat": "repeat" },
                         "type": "quantitative",
                         "scale": {
-                            "type": "threshold",
                             "domain": [
                                 400000,
-                                500000,
-                                600000,
-                                700000,
-                                800000,
-                                900000,
-                                1000000,
-                                1100000,
-                                1200000,
-                                1300000,
-                                1400000,
-                                1500000
+                                2000000
                             ],
                             "scheme": "reds"
                         },
-                        "legend": { "format": ",", "title": "Median price" }
+                        "legend": { "format": ".2s", "title": "Median price" }
                     },
                     "tooltip": [
                         { "field": "locality", "type": "nominal", "title": "Suburb" },
