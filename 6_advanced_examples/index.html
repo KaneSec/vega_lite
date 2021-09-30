@@ -24,7 +24,8 @@
 <body>
 
     <div class="page">
-        <h2>Example 1: Interactive multiple views</h2>
+
+        <h2>Example 1: Overview+Detail</h2>
         <!-- pure grid group -->
         <div class="pure-g">
             <div class="pure-u-1-1">
@@ -36,8 +37,7 @@
 
         <hr class="hr3">
 
-
-        <h2>Example 2: Zoomable Chorpleth map with a time slider</h2>
+        <h2>Example 2: Interactive multiple views</h2>
         <!-- pure grid group -->
         <div class="pure-g">
             <div class="pure-u-1-1">
@@ -49,11 +49,24 @@
 
         <hr class="hr3">
 
-        <h2>Example 3: Chorpleth map in small multiples</h2>
+
+        <h2>Example 3: Zoomable Chorpleth map with a time slider</h2>
         <!-- pure grid group -->
         <div class="pure-g">
             <div class="pure-u-1-1">
                 <div id="vis3" class="vis-container"></div>
+            </div>
+        </div>
+        <!-- end pure grid group -->
+        <br>
+
+        <hr class="hr3">
+
+        <h2>Example 4: Chorpleth map in small multiples</h2>
+        <!-- pure grid group -->
+        <div class="pure-g">
+            <div class="pure-u-1-1">
+                <div id="vis4" class="vis-container"></div>
             </div>
         </div>
         <!-- end pure grid group -->
@@ -62,14 +75,17 @@
 
 
     <script type="text/javascript">
-        var specVis1 = "interactive.vg.json";
+        var specVis1 = "overview_detail.vg.json";
         vegaEmbed('#vis1', specVis1);
 
-        var specVis2 = "properties.vg.json";
+        var specVis2 = "interactive.vg.json";
         vegaEmbed('#vis2', specVis2);
 
-        var specVis3 = "small_multiples.vg.json";
+        var specVis3 = "properties.vg.json";
         vegaEmbed('#vis3', specVis3);
+
+        var specVis4 = "small_multiples.vg.json";
+        vegaEmbed('#vis4', specVis4);
     </script>
 </body>
 
