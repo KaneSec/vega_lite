@@ -1,6 +1,5 @@
 {
     "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-    "title": "Earthquakes above a magitude of 5.5 (2020-2021)",
     "data": { "url": "https://raw.githubusercontent.com/KaneSec/vega_lite/main/6_advanced_examples/data/earthquake.csv" },
     "transform": [
         { "calculate": "parseInt(datum.mag)", "as": "mag_int" }
@@ -8,6 +7,7 @@
     "vconcat": [{
             "width": "container",
             "height": 400,
+            "title": "Earthquakes above a magitude of 5 (2000-2021)",
             "projection": { "type": "equalEarth", "rotate": [-150, 0, 0] },
             "layer": [{
                     "data": {
@@ -24,7 +24,7 @@
                     "mark": {
                         "type": "circle",
                         "tooltip": { "content": "data" },
-                        "opacity": 0.3,
+                        "opacity": 0.4,
                         "size": 15
                     },
                     "encoding": {
@@ -38,7 +38,12 @@
                                 "domain": [6, 7, 8, 9],
                                 "range": ["#fdbe85", "#fd8d3c", "#e6550d", "#bd0026", "#7f0000"]
                             }
-                        }
+                        },
+                        "tooltip": [
+                            { "field": "time", "type": "temporal" },
+                            { "field": "mag", "type": "quantitative" },
+                            { "field": "place", "type": "nominal" }
+                        ]
                     }
                 }
             ]
