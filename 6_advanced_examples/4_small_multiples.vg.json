@@ -7,7 +7,7 @@
         "projection": {
             "type": "equirectangular",
             "center": [144.4, -37.6],
-            "scale": 20000
+            "scale": 21000
         },
         "width": 400,
         "height": 300,
