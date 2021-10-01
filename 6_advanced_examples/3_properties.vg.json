@@ -21,7 +21,7 @@
         },
         {
             "name": "zoom_level",
-            "value": 60000,
+            "value": 30000,
             "bind": {
                 "input": "range",
                 "min": 3500,
@@ -92,7 +92,7 @@
                     "scale": {
                         "domain": [
                             400000,
-                            2000000
+                            1800000
                         ],
                         "scheme": "reds"
                     },
