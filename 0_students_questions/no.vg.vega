@@ -1,0 +1,84 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "data": { "url": "https://raw.githubusercontent.com/TylerPersonal/Vis2_data/main/lat_long_state_areas.csv" },
+    "config": {
+        "background": "aliceblue",
+        "title": { "fontSize": 18 },
+        "view": { "stroke": "transparent" },
+        "axis": { "grid": true, "tickBand": "extent" }
+    },
+    "hconcat": [{
+            "width": 400,
+            "height": 300,
+            "title": "Fires Over Time By State",
+            "transform": [{
+                    "aggregate": [{
+                        "op": "count",
+                        "as": "Count"
+                    }],
+                    "groupby": ["acq_date", "state"]
+                },
+                {
+                    "calculate": "if(datum.state === 'Victoria', 2, if(datum.state === 'Tasmania', 0, if(datum.state === 'New South Wales',3,if(datum.state === 'South Australia',1,4))))",
+                    "as": "stateOrder"
+                }
+            ],
+            "mark": "area",
+            "params": [{
+                "name": "states",
+                "select": { "type": "point", "fields": ["state"] },
+                "bind": "legend"
+            }],
+            "encoding": {
+                "x": {
+                    "timeUnit": "yearquarter",
+                    "field": "acq_date",
+                    "title": "Time",
+                    "axis": { "domain": false, "format": "%Y", "tickSize": 0 }
+                },
+                "y": { "aggregate": "sum", "field": "Count", "title": "Total Fires" },
+                "color": {
+                    "field": "state",
+                    "title": "State",
+                    "type": "nominal",
+                    "scale": {
+                        "domain": ["Western Australia",
+                            "Queensland",
+                            "Northern Territory",
+                            "New South Wales",
+                            "Victoria",
+                            "South Australia",
+                            "Tasmania"
+                        ],
+                        "type": "ordinal",
+                        "range": ["#377eb8", "#e41a1c", "#4daf4a", "#984ea3", "#ff7f00", "#a65628", "#ffff33"]
+                    }
+                },
+                "order": { "field": "stateOrder" },
+                "opacity": {
+                    "condition": { "param": "states", "value": 1 },
+                    "value": 0.2
+                },
+                "tooltip": [{ "field": "state", "type": "nominal", "title": "State" }]
+            }
+        },
+        {
+            "width": 400,
+            "height": 300,
+            "transform": [{ "calculate": "datum.brightness - 273", "as": "Surface Temperature" }, { "aggregate": [{ "op": "count", "as": "Count" }] }],
+            "mark": { "type": "rect", "strokeWidth": 2 },
+            "encoding": {
+                "x": { "field": "acq_date", "timeUnit": "yearmonth", "title": "Time" },
+                "y": { "field": "Surface Temperature", "title": "Surface Temperature" },
+                "color": {
+                    "scale": {
+                        "domain": [10, 20, 40, 60],
+                        "range": ["#fc9272", "#ef3b2c", "#cb181d", "#a50f15", "#67000d"]
+                    },
+                    "field": "Count",
+                    "type": "quantitative"
+                }
+            }
+        }
+    ]
+}
