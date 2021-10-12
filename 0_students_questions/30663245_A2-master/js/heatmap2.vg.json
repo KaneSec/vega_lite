@@ -1,0 +1,57 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "data": {
+        "url": "https://raw.githubusercontent.com/zijinchen-0104/30663245_A2/master/data/A2.csv"
+    },
+    "title": "..........",
+    "config": {
+        "view": {
+            "strokeWidth": 0,
+            "step": 13
+        },
+        "axis": {
+            "domain": false
+        }
+    },
+    "vconcat": [{
+        "width": 480,
+        "transform": [
+          {
+            "calculate": "timeParse(datum['date_sold'], '%d/%m/%Y')",
+            "as" : "date_new"
+          }],
+        "mark": "rect",
+        "encoding": {
+        "x": {
+            "field": "date_new",
+            "timeUnit": "date",
+            "type": "ordinal",
+            "title": "Day",
+            "axis": {
+                "labelAngle": 0,
+                "format": "%e"
+            }
+        },
+        "y": {
+            "field": "date_new",
+            "timeUnit": "yearmonth",
+            "type": "ordinal",
+            "title": "Month,Year"
+        },
+        "color": {
+            "field": "price",
+            "aggregate": "average",
+            "type": "quantitative",
+            "legend": {
+                "title": null
+            }
+        },
+        "tooltip": [
+                      { "aggregate": "average", "field": "price", "type": "quantitative", "title": "Average price", "format": ".2f" },
+                      { "timeUnit":"yearmonth","field": "date_new", "type": "ordinal", "title": "Year and Month" },
+                      { "timeUnit":"date","field": "date_new", "type": "temporal", "title": "Date" }
+                  ]
+    }
+      }]
+  }
+  

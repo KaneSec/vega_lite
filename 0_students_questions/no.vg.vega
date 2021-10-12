@@ -1,231 +1,137 @@
 {
     "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-    "title": "England and Wales Average Housing Prices 2017",
-    "width": 425,
-    "height": 300,
-    "params": [{
-            "name": "zoom_level",
-            "value": 2500,
-            "bind": {
-                "input": "range",
-                "min": 2500,
-                "max": 30000,
-                "step": 100,
-                "name": "Zoom: "
-            }
-        },
-        {
-            "name": "center_to",
-            "value": [-2.179404, 53.002666],
-            "bind": {
-                "input": "select",
-                "options": [
-                    [-0.118092, 51.509865],
-                    [-2.983333, 53.400002],
-                    [-2.179404, 53.002666]
-                ],
-                "labels": ["London", "Liverpool", "Centre"],
-                "name": "Map Centre: "
-            }
-        },
-        {
-            "name": "pts",
-            "select": { "type": "point", "on": "mouseover" }
-        },
-        {
-            "name": "Property_selection",
-            "bind": {
-                "input": "select",
-                "options": [
-                    null,
-                    "averageDetached",
-                    "averageSemi-Detached",
-                    "averageTerraced",
-                    "averageFlats",
-                    "averageOther"
-                ],
-                "labels": [
-                    "Show All",
-                    "Detached",
-                    "Semi-Detached",
-                    "Terraced",
-                    "Flats",
-                    "Other"
-                ],
-                "name": "Property Selection: "
-            }
-        }
-    ],
-    "projection": {
-        "type": "azimuthalEqualArea",
-        "center": { "expr": "center_to" },
-        "scale": { "expr": "zoom_level" }
+    "data": {
+        "url": "https://raw.githubusercontent.com/AprajitaBhasin/vega_lite/main/1_symbol_map/data/fire_archive_M6_96619.csv"
     },
-    "layer": [{
-            "data": {
-                "url": "https://raw.githubusercontent.com/jlea0003/Assignment2Homework/master/Map_England/js/Counties_and_Unitary_Authorities_(May_2021)_UK_BUC.json",
-                "format": {
-                    "type": "topojson",
-                    "feature": "Counties_and_Unitary_Authorities_(May_2021)_UK_BUC"
-                }
-            },
-            "transform": [{
-                "lookup": "properties.CTYUA21NM",
-                "from": {
+    "vconcat": [{
+            "width": "container",
+            "height": 400,
+            "title": "A  geographical representation of Australian fires from space",
+            "projection": { "type": "equirectangular" },
+            "layer": [{
                     "data": {
-                        "url": "https://raw.githubusercontent.com/jlea0003/Assignment2Homework/master/Map_England/data/price_paid_2017.csv"
+                        "url": "https://raw.githubusercontent.com/AprajitaBhasin/vega_lite/main/1_symbol_map/js/australian-states.json",
+                        "format": { "type": "topojson", "feature": "australian-states" }
                     },
-                    "key": "Unique",
-                    "fields": [
-                        "Average",
-                        "Detached",
-                        "Semi-Detached",
-                        "Terraced",
-                        "Flats",
-                        "Other",
-                        "averageDetached",
-                        "averageSemi-Detached",
-                        "averageTerraced",
-                        "averageFlats",
-                        "averageOther"
+                    "mark": { "type": "geoshape", "fill": "lightgray", "stroke": "white" }
+                },
+                {
+                    "transform": [{ "filter": { "param": "time_brush" } }],
+                    "encoding": {
+                        "longitude": { "field": "longitude", "type": "quantitative" },
+                        "latitude": { "field": "latitude", "type": "quantitative" },
+                        "color": {
+                            "field": "brightness",
+                            "type": "quantitative",
+                            "scale": {
+                                "type": "threshold",
+                                "domain": [350, 400, 450, 500],
+                                "range": ["#fdbe85", "#fd8d3c", "#e6550d", "#bd0026", "#7f0000"]
+                            }
+                        },
+                        "tooltip": [
+                            { "field": "acq_date", "type": "temporal" },
+                            { "field": "brightness", "type": "quantitative" },
+                            { "field": "satellite", "type": "nominal" }
+                        ]
+                    },
+                    "layer": [
+                        { "mark": { "type": "circle", "opacity": 0.3, "size": 15 } },
+                        {
+                            "transform": [{
+                                    "window": [{ "op": "rank", "as": "ranking" }],
+                                    "sort": [{ "field": "brightness", "order": "descending" }]
+                                },
+                                { "filter": "datum.ranking == 1" },
+                                {
+                                    "calculate": "'The worst fire from space of the selected period: ' + datum['brightness']",
+                                    "as": "text_annotation"
+                                }
+                            ],
+                            "mark": { "type": "text", "align": "left", "dx": 4, "fontSize": 14 },
+                            "encoding": { "text": { "field": "text_annotation" } }
+                        }
                     ]
                 }
+            ]
+        },
+        {
+            "width": "container",
+            "height": 60,
+            "mark": "line",
+            "title": {
+                "text": "An overview of the fires seen from space",
+                "subtitle": "Use this visualisation to filter and gain further insight on the brightness (Kelvin) of the fires in that period"
+
+            },
+            "params": [{
+                "name": "time_brush",
+                "select": { "type": "interval", "encodings": ["x"] }
             }],
-            "mark": { "type": "geoshape" },
             "encoding": {
-                "color": {
-                    "condition": [{
-                            "test": "Property_selection == 'averageDetached'",
-                            "field": "averageDetached"
-                        },
-                        {
-                            "test": "Property_selection == 'averageSemi-Detached'",
-                            "field": "averageSemi-Detached"
-                        },
-                        {
-                            "test": "Property_selection == 'averageTerraced'",
-                            "field": "averageTerraced"
-                        },
-                        {
-                            "test": "Property_selection == 'averageFlats'",
-                            "field": "averageFlats"
-                        },
-                        {
-                            "test": "Property_selection == 'averageOther'",
-                            "field": "averageOther"
-                        }
-                    ],
-                    "field": "Average",
-                    "type": "quantitative",
-                    "title": "Average House Price",
-                    "scale": {
-                        "type": "threshold",
-                        "domain": [200000, 300000, 400000, 600000, 800000, 1000000, 2000000, 3000000],
-                        "range": [
-                            "#ffffe5",
-                            "#fff7bc",
-                            "#fee391",
-                            "#fec44f",
-                            "#fe9929",
-                            "#ec7014",
-                            "#cc4c02",
-                            "#993404",
-                            "#662506"
-                        ]
-                    }
+                "x": {
+                    "field": "acq_date",
+                    "timeUnit": "yearmonthdate",
+                    "axis": { "title": "", "format": "%x" }
                 },
-                "tooltip": [{
-                        "field": "properties.CTYUA21NM",
-                        "type": "nominal",
-                        "title": "District and/ or County"
-                    },
-                    {
-                        "field": "Average",
-                        "type": "quantitative",
-                        "format": ".0f",
-                        "title": "Average price in pounds"
-                    },
-                    {
-                        "field": "averageDetached",
-                        "type": "quantitative",
-                        "format": ".0f",
-                        "title": "Average price; Detached"
-                    },
-                    {
-                        "field": "averageSemi-Detached",
-                        "type": "quantitative",
-                        "format": ".0f",
-                        "title": "Average price; Semi-Detached"
-                    },
-                    {
-                        "field": "averageTerraced",
-                        "type": "quantitative",
-                        "format": ".0f",
-                        "title": "Average price; Terraced"
-                    },
-                    {
-                        "field": "averageFlats",
-                        "type": "quantitative",
-                        "format": ".0f",
-                        "title": "Average price; Flats"
-                    },
-                    {
-                        "field": "averageOther",
-                        "type": "quantitative",
-                        "format": ".0f",
-                        "title": "Average price; Other"
-                    }
-                ],
-                "stroke": {
-                    "condition": {
-                        "param": "pts",
-                        "empty": false,
-                        "value": "black"
-                    },
-                    "value": "gray"
-                },
-                "strokeWidth": {
-                    "condition": {
-                        "param": "pts",
-                        "empty": false,
-                        "value": 2
-                    },
-                    "value": 1
-                },
-                "opacity": {
-                    "condition": { "param": "pts", "value": 1 },
-                    "value": 0.9
+                "y": {
+                    "aggregate": "count",
+                    "axis": { "tickCount": 3, "grid": false },
+                    "title": "Count"
                 }
             }
         },
+
+
         {
-            "data": {
-                "url": "https://raw.githubusercontent.com/jlea0003/Assignment2Homework/master/Map_England/data/gb.csv"
-            },
-            "encoding": {
-                "longitude": {
-                    "field": "lng",
-                    "type": "quantitative"
+
+            "width": "container",
+            "transform": [{
+                    "bin": { "step": 50, "extent": [300, 510] },
+                    "field": "brightness",
+                    "as": "brightness"
                 },
-                "latitude": {
-                    "field": "lat",
-                    "type": "quantitative"
+
+                {
+                    "joinaggregate": [{
+                        "op": "count",
+                        "field": "brightness",
+                        "as": "Count"
+                    }]
                 }
-            },
+            ],
+
             "layer": [{
-                "mark": {
-                    "type": "circle",
-                    "color": "orange"
-                }
-            }, {
-                "mark": {
-                    "type": "text",
-                    "dy": -10
+                    "mark": "area",
+                    "encoding": {
+                        "x": {
+                            "field": "acq_date",
+                            "timeUnit": "yearmonthdate",
+                            "scale": { "domain": { "param": "time_brush" } },
+                            "axis": { "title": "", "tickCount": 5, "grid": false }
+                        },
+                        "y": { "field": "Count" },
+                        "color": {
+                            "field": "brightness",
+                            "scale": {
+                                "range": ["#fdbe85", "#fd8d3c", "#e6550d", "#bd0026", "#7f0000"]
+                            },
+                            "legend": null
+                        }
+                    }
                 },
-                "encoding": {
-                    "text": { "field": "city", "type": "nominal" }
+
+                {
+                    "mark": "rule",
+                    "encoding": {
+                        "y": { "aggregate": "mean", "field": "Count" },
+                        "color": { "value": "blue" },
+                        "size": { "value": 5 }
+                    }
                 }
-            }]
+
+            ]
+
         }
     ],
     "config": { "title": { "font": "sans-serif", "fontSize": 14 } }

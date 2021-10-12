@@ -1,0 +1,60 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "data": {"url": "https://raw.githubusercontent.com/zijinchen-0104/30663245_A2/master/data/A2.csv"},
+  "title":"Overall price change over time",
+  "vconcat": [{
+    "width": 450,
+    "height":280,
+    "transform": [
+      {
+        "calculate": "timeParse(datum['date_sold'], '%d/%m/%Y')",
+        "as" : "date_new"
+      }],
+    "mark": "area",
+    "encoding": {
+      "x": {
+        "timeUnit":"yearmonth",
+        "field": "date_new",
+        "type": "temporal",
+        "scale": {"domain": {"param": "brush"}},
+        "axis": {"title": "","grid": false}
+      },
+      "y": {"aggregate":"average","field": "price", "type": "quantitative","axis": {"title": "Average price","grid": false,"format":".1s"}},
+      "tooltip": [
+                  { "aggregate": "average", "field": "price", "type": "quantitative", "title": "Average price", "format": ".2f" },
+                  { "timeUnit":"yearmonth","field": "date_new", "type": "temporal", "title": "Time" }
+              ]
+    }
+  }, {
+    "width": 480,
+    "height": 60,
+    "transform": [
+      {
+        "calculate": "timeParse(datum['date_sold'], '%d/%m/%Y')",
+        "as" : "date_new"
+      }],
+    "mark": "area",
+    "params": [{
+      "name": "brush",
+      "select": {"type": "interval", "encodings": ["x"]}
+    }],
+    "encoding": {
+      "x": {
+        "timeUnit":"yearmonth",
+        "field": "date_new",
+        "type": "temporal",
+        "axis": {"title": "Time","grid": false}
+      },
+      "y": {
+        "aggregate":"average",
+        "field": "price",
+        "type": "quantitative",
+        "axis": {"tickCount": 3, "grid": false,"title": "Average price","format":".1s"}
+      },
+      "tooltip": [
+                  { "aggregate": "average", "field": "price", "type": "quantitative", "title": "Average price", "format": ".2f" },
+                  { "timeUnit":"yearmonth","field": "date_new", "type": "temporal", "title": "Time" }
+              ]
+    }
+  }]
+}
