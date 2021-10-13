@@ -1,138 +1,335 @@
 {
+
     "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+
+    "config": { "view": { "stroke": "" } },
+
+    "title": "Number of achievements of the Top 5 Highest Earning Players in League of Legends",
+
+    "width": 800,
+
+    "height": 200,
+
     "data": {
-        "url": "https://raw.githubusercontent.com/AprajitaBhasin/vega_lite/main/1_symbol_map/data/fire_archive_M6_96619.csv"
+
+        "values": [
+
+            { "Player": "Faker", "medal": "gold" },
+
+            { "Player": "Faker", "medal": "gold" },
+
+            { "Player": "Faker", "medal": "gold" },
+
+            { "Player": "Faker", "medal": "gold" },
+
+            { "Player": "Faker", "medal": "gold" },
+
+            { "Player": "Faker", "medal": "gold" },
+
+            { "Player": "Faker", "medal": "gold" },
+
+            { "Player": "Faker", "medal": "gold" },
+
+            { "Player": "Faker", "medal": "gold" },
+
+            { "Player": "Faker", "medal": "gold" },
+
+            { "Player": "Faker", "medal": "gold" },
+
+            { "Player": "Faker", "medal": "gold" },
+
+            { "Player": "Faker", "medal": "gold" },
+
+            { "Player": "Faker", "medal": "gold" },
+
+            { "Player": "Faker", "medal": "gold" },
+
+            { "Player": "Faker", "medal": "gold" },
+
+            { "Player": "Faker", "medal": "gold" },
+
+            { "Player": "Faker", "medal": "gold" },
+
+            { "Player": "Faker", "medal": "gold" },
+
+            { "Player": "Faker", "medal": "gold" },
+
+            { "Player": "Faker", "medal": "gold" },
+
+            { "Player": "Faker", "medal": "gold" },
+
+            { "Player": "Faker", "medal": "gold" },
+
+            { "Player": "Faker", "medal": "gold" },
+
+            { "Player": "Faker", "medal": "gold" },
+
+            { "Player": "Faker", "medal": "gold" },
+
+            { "Player": "Faker", "medal": "gold" },
+
+            { "Player": "Faker", "medal": "gold" },
+
+            { "Player": "Faker", "medal": "gold" },
+
+            { "Player": "Faker", "medal": "gold" },
+
+            { "Player": "Faker", "medal": "gold" },
+
+            { "Player": "Faker", "medal": "gold" },
+
+            { "Player": "Faker", "medal": "gold" },
+
+            { "Player": "Faker", "medal": "gold" },
+
+            { "Player": "Faker", "medal": "silver" },
+
+            { "Player": "Faker", "medal": "silver" },
+
+            { "Player": "Faker", "medal": "silver" },
+
+            { "Player": "Faker", "medal": "silver" },
+
+            { "Player": "Faker", "medal": "silver" },
+
+            { "Player": "Faker", "medal": "silver" },
+
+            { "Player": "Faker", "medal": "silver" },
+
+            { "Player": "Faker", "medal": "silver" },
+
+            { "Player": "Faker", "medal": "bronze" },
+
+            { "Player": "Faker", "medal": "bronze" },
+
+            { "Player": "Faker", "medal": "bronze" },
+
+            { "Player": "Duke", "medal": "gold" },
+
+            { "Player": "Duke", "medal": "gold" },
+
+            { "Player": "Duke", "medal": "gold" },
+
+            { "Player": "Duke", "medal": "gold" },
+
+            { "Player": "Duke", "medal": "gold" },
+
+            { "Player": "Duke", "medal": "gold" },
+
+            { "Player": "Duke", "medal": "gold" },
+
+            { "Player": "Duke", "medal": "gold" },
+
+            { "Player": "Duke", "medal": "gold" },
+
+            { "Player": "Duke", "medal": "gold" },
+
+            { "Player": "Duke", "medal": "gold" },
+
+            { "Player": "Duke", "medal": "gold" },
+
+            { "Player": "Duke", "medal": "gold" },
+
+            { "Player": "Duke", "medal": "gold" },
+
+            { "Player": "Duke", "medal": "gold" },
+
+            { "Player": "Duke", "medal": "gold" },
+
+            { "Player": "Duke", "medal": "gold" },
+
+            { "Player": "Duke", "medal": "gold" },
+
+            { "Player": "Duke", "medal": "silver" },
+
+            { "Player": "Duke", "medal": "silver" },
+
+            { "Player": "Duke", "medal": "bronze" },
+
+            { "Player": "Duke", "medal": "bronze" },
+
+            { "Player": "Duke", "medal": "bronze" },
+
+            { "Player": "Duke", "medal": "bronze" },
+
+            { "Player": "Duke", "medal": "bronze" },
+
+            { "Player": "Bang", "medal": "gold" },
+
+            { "Player": "Bang", "medal": "gold" },
+
+            { "Player": "Bang", "medal": "gold" },
+
+            { "Player": "Bang", "medal": "gold" },
+
+            { "Player": "Bang", "medal": "gold" },
+
+            { "Player": "Bang", "medal": "gold" },
+
+            { "Player": "Bang", "medal": "gold" },
+
+            { "Player": "Bang", "medal": "gold" },
+
+            { "Player": "Bang", "medal": "gold" },
+
+            { "Player": "Bang", "medal": "gold" },
+
+            { "Player": "Bang", "medal": "gold" },
+
+            { "Player": "Bang", "medal": "gold" },
+
+            { "Player": "Bang", "medal": "gold" },
+
+            { "Player": "Bang", "medal": "gold" },
+
+            { "Player": "Bang", "medal": "gold" },
+
+            { "Player": "Bang", "medal": "gold" },
+
+            { "Player": "Bang", "medal": "gold" },
+
+            { "Player": "Bang", "medal": "gold" },
+
+            { "Player": "Bang", "medal": "silver" },
+
+            { "Player": "Bang", "medal": "silver" },
+
+            { "Player": "Bang", "medal": "silver" },
+
+            { "Player": "Bang", "medal": "silver" },
+
+            { "Player": "Bang", "medal": "silver" },
+
+            { "Player": "Bang", "medal": "bronze" },
+
+            { "Player": "Bang", "medal": "bronze" },
+
+            { "Player": "Wolf", "medal": "gold" },
+
+            { "Player": "Wolf", "medal": "gold" },
+
+            { "Player": "Wolf", "medal": "gold" },
+
+            { "Player": "Wolf", "medal": "gold" },
+
+            { "Player": "Wolf", "medal": "gold" },
+
+            { "Player": "Wolf", "medal": "gold" },
+
+            { "Player": "Wolf", "medal": "gold" },
+
+            { "Player": "Wolf", "medal": "gold" },
+
+            { "Player": "Wolf", "medal": "gold" },
+
+            { "Player": "Wolf", "medal": "gold" },
+
+            { "Player": "Wolf", "medal": "gold" },
+
+            { "Player": "Wolf", "medal": "gold" },
+
+            { "Player": "Wolf", "medal": "gold" },
+
+            { "Player": "Wolf", "medal": "gold" },
+
+            { "Player": "Wolf", "medal": "gold" },
+
+            { "Player": "Wolf", "medal": "gold" },
+
+            { "Player": "Wolf", "medal": "gold" },
+
+            { "Player": "Wolf", "medal": "gold" },
+
+            { "Player": "Wolf", "medal": "silver" },
+
+            { "Player": "Wolf", "medal": "silver" },
+
+            { "Player": "Wolf", "medal": "silver" },
+
+            { "Player": "Wolf", "medal": "silver" },
+
+            { "Player": "Wolf", "medal": "silver" },
+
+            { "Player": "Wolf", "medal": "silver" },
+
+            { "Player": "Wolf", "medal": "silver" },
+
+            { "Player": "Wolf", "medal": "bronze" },
+
+            { "Player": "Benji", "medal": "gold" },
+
+            { "Player": "Benji", "medal": "gold" },
+
+            { "Player": "Benji", "medal": "gold" },
+
+            { "Player": "Benji", "medal": "gold" },
+
+            { "Player": "Benji", "medal": "gold" },
+
+            { "Player": "Benji", "medal": "gold" },
+
+            { "Player": "Benji", "medal": "gold" },
+
+            { "Player": "Benji", "medal": "gold" },
+
+            { "Player": "Benji", "medal": "gold" },
+
+            { "Player": "Benji", "medal": "gold" },
+
+            { "Player": "Benji", "medal": "gold" },
+
+            { "Player": "Benji", "medal": "gold" },
+
+            { "Player": "Benji", "medal": "gold" },
+
+            { "Player": "Benji", "medal": "gold" },
+
+            { "Player": "Benji", "medal": "gold" },
+
+            { "Player": "Benji", "medal": "gold" },
+
+            { "Player": "Benji", "medal": "gold" },
+
+            { "Player": "Benji", "medal": "silver" },
+
+            { "Player": "Benji", "medal": "bronze" },
+
+            { "Player": "Benji", "medal": "bronze" },
+
+            { "Player": "Benji", "medal": "bronze" }
+
+        ]
+
     },
-    "vconcat": [{
-            "width": "container",
-            "height": 400,
-            "title": "A  geographical representation of Australian fires from space",
-            "projection": { "type": "equirectangular" },
-            "layer": [{
-                    "data": {
-                        "url": "https://raw.githubusercontent.com/AprajitaBhasin/vega_lite/main/1_symbol_map/js/australian-states.json",
-                        "format": { "type": "topojson", "feature": "australian-states" }
-                    },
-                    "mark": { "type": "geoshape", "fill": "lightgray", "stroke": "white" }
-                },
-                {
-                    "transform": [{ "filter": { "param": "time_brush" } }],
-                    "encoding": {
-                        "longitude": { "field": "longitude", "type": "quantitative" },
-                        "latitude": { "field": "latitude", "type": "quantitative" },
-                        "color": {
-                            "field": "brightness",
-                            "type": "quantitative",
-                            "scale": {
-                                "type": "threshold",
-                                "domain": [350, 400, 450, 500],
-                                "range": ["#fdbe85", "#fd8d3c", "#e6550d", "#bd0026", "#7f0000"]
-                            }
-                        },
-                        "tooltip": [
-                            { "field": "acq_date", "type": "temporal" },
-                            { "field": "brightness", "type": "quantitative" },
-                            { "field": "satellite", "type": "nominal" }
-                        ]
-                    },
-                    "layer": [
-                        { "mark": { "type": "circle", "opacity": 0.3, "size": 15 } },
-                        {
-                            "transform": [{
-                                    "window": [{ "op": "rank", "as": "ranking" }],
-                                    "sort": [{ "field": "brightness", "order": "descending" }]
-                                },
-                                { "filter": "datum.ranking == 1" },
-                                {
-                                    "calculate": "'The worst fire from space of the selected period: ' + datum['brightness']",
-                                    "as": "text_annotation"
-                                }
-                            ],
-                            "mark": { "type": "text", "align": "left", "dx": 4, "fontSize": 14 },
-                            "encoding": { "text": { "field": "text_annotation" } }
-                        }
-                    ]
-                }
-            ]
-        },
-        {
-            "width": "container",
-            "height": 60,
-            "mark": "line",
-            "title": {
-                "text": "An overview of the fires seen from space",
-                "subtitle": "Use this visualisation to filter and gain further insight on the brightness (Kelvin) of the fires in that period"
 
-            },
-            "params": [{
-                "name": "time_brush",
-                "select": { "type": "interval", "encodings": ["x"] }
-            }],
-            "encoding": {
-                "x": {
-                    "field": "acq_date",
-                    "timeUnit": "yearmonthdate",
-                    "axis": { "title": "", "format": "%x" }
-                },
-                "y": {
-                    "aggregate": "count",
-                    "axis": { "tickCount": 3, "grid": false },
-                    "title": "Count"
-                }
-            }
-        },
-
+    "transform": [
 
         {
 
-            "width": "container",
-            "transform": [{
-                    "bin": { "step": 50, "extent": [300, 510] },
-                    "field": "brightness",
-                    "as": "brightness"
-                },
+            "calculate": "{'gold': '🥇', 'silver': '🥈', 'bronze': '🥉'}[datum.medal]",
 
-                {
-                    "joinaggregate": [{
-                        "op": "count",
-                        "field": "brightness",
-                        "as": "Count"
-                    }]
-                }
-            ],
+            "as": "emoji"
 
-            "layer": [{
-                    "mark": "area",
-                    "encoding": {
-                        "x": {
-                            "field": "acq_date",
-                            "timeUnit": "yearmonthdate",
-                            "scale": { "domain": { "param": "time_brush" } },
-                            "axis": { "title": "", "tickCount": 5, "grid": false }
-                        },
-                        "y": { "field": "Count" },
-                        "color": {
-                            "field": "brightness",
-                            "scale": {
-                                "range": ["#fdbe85", "#fd8d3c", "#e6550d", "#bd0026", "#7f0000"]
-                            },
-                            "legend": null
-                        }
-                    }
-                },
+        },
 
-                {
-                    "mark": "rule",
-                    "encoding": {
-                        "y": { "aggregate": "mean", "field": "Count" },
-                        "color": { "value": "blue" },
-                        "size": { "value": 5 }
-                    }
-                }
+        { "window": [{ "op": "rank", "as": "rank" }], "groupby": ["country", "medal"] }
 
-            ]
-
-        }
     ],
-    "config": { "title": { "font": "sans-serif", "fontSize": 14 } }
+
+    "mark": { "type": "text", "baseline": "middle" },
+
+    "encoding": {
+
+        "x": { "field": "rank", "type": "ordinal", "axis": null },
+
+        "y": { "field": "medal", "type": "nominal", "axis": null, "sort": null },
+
+        "row": { "field": "Player", "header": { "title": "" } },
+
+        "text": { "field": "emoji", "type": "nominal" },
+
+        "size": { "value": 20 }
+
+    }
+
 }
