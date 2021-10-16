@@ -1,0 +1,94 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "data": {
+    "url": "https://raw.githubusercontent.com/Daniel23366/dataset/main/employment.csv"
+  },
+  "vconcat": [
+    {
+      "width": 600,
+      "height": 400,
+      "title": {"text": "Employment rate in 2020 of world", "frame": "group"},
+      "layer": [
+        {
+          "data": {
+            "url": "https://raw.githubusercontent.com/KaneSec/vega_lite/main/2_symbol_map/js/ne_110m_admin_0_countries.topojson",
+            "format": {
+              "type": "topojson",
+              "feature": "ne_110m_admin_0_countries"
+            }
+          },
+          "projection": {"type": {"expr": "maptype"}},
+          "mark": {"type": "geoshape", "fill": "lightgray", "stroke": "white"}
+        },
+        {
+          "data": {
+            "url": "https://raw.githubusercontent.com/Daniel23366/dataset/main/employment.csv"
+          },
+          "projection": {"type": {"expr": "maptype"}},
+          "mark": {"type": "circle", "tooltip": {"content": "data"}},
+          "encoding": {
+            "longitude": {"field": "long", "type": "quantitative"},
+            "latitude": {"field": "lat", "type": "quantitative"},
+            "size": {
+              "field": "2020",
+              "type": "quantitative",
+              "scale": {"domain": [0, 100]}
+            },
+            "color": {
+              "field": "2020",
+              "type": "quantitative",
+              "scale": {"domain": [0, 100]}
+            },
+            "tooltip": [{"field": "Country Name"}, {"field": "2020"}]
+          }
+        }
+      ]
+    },
+    {
+      "width": 600,
+      "height": 200,
+      "data": {
+        "url": "https://raw.githubusercontent.com/Daniel23366/dataset/main/employment.csv"
+      },
+      "mark": {"type": "line", "tooltip": true, "point": true},
+      "title": "Employment rate of Australia, China and USA",
+      "encoding": {
+        "x": {"field": "yy", "type": "temporal", "title": "years"},
+        "y": {
+          "field": "rate",
+          "title": "Employment rate",
+          "type": "quantitative",
+          "scale": {"domain": [30, 90]}
+        },
+        "color": {"field": "country", "type": "nominal"}
+      }
+    }
+  ],
+  "params": [
+    {
+      "name": "maptype",
+      "value": "equalEarth",
+      "bind": {
+        "input": "select",
+        "options": [
+          "albers",
+          "albersUsa",
+          "azimuthalEqualArea",
+          "azimuthalEquidistant",
+          "conicConformal",
+          "conicEqualArea",
+          "conicEquidistant",
+          "equalEarth",
+          "equirectangular",
+          "gnomonic",
+          "mercator",
+          "naturalEarth1",
+          "orthographic",
+          "stereographic",
+          "transverseMercator"
+        ]
+      }
+    }
+  ],
+  "config": {"title": {"font": "sans-serif", "fontSize": 14}}
+}
