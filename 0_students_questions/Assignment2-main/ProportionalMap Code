@@ -1,0 +1,128 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v20.json",
+  "width": "container",
+  "height": 370,
+  "title": "Australian Bushfire Distribution",
+  "projection": {
+        "type": "equirectangular",
+        "center": [134, -27],
+        "scale": 600
+      },
+
+    "params": [
+      {
+      "name": "month_selection",
+      "bind": {
+        "input": "select",
+        "options": [
+          "11",
+          "12",
+          "1"
+        ],
+        "labels": [
+          "November",
+          "December",
+          "January"
+        ],
+        "name": "Month: "
+      }
+    },
+    {
+        "name": "Time_slider",
+        "value": 1,
+        "bind": {
+          "input": "range",
+          "min": 1,
+          "max": 30,
+          "step": 1,
+          "name": "Day: "
+        }
+      }],
+  "layer": [
+    {
+      "data": {
+        "url": "https://raw.githubusercontent.com/nityagithub/Assignment2/main/aus_states.topojson",
+        "format": {"type": "topojson", "feature": "austates"}
+      },
+      "mark": {"type": "geoshape", "fill": "lightgray", "stroke": "white"}
+    },
+    {
+      "data": {
+        "url": "https://raw.githubusercontent.com/nityagithub/Assignment2/main/fire.csv"
+        },
+      "transform": [{"filter":"datum.day == Time_slider"},
+      {
+        "filter":"month_selection == null || datum.month == month_selection"}
+        ],
+      "encoding": {
+        "longitude": {"field": "longitude", "type": "quantitative"},
+        "latitude": {"field": "latitude", "type": "quantitative"},
+        "tooltip": [
+          {"field": "brightness", "title": "Brightness","type":"quantitative"},
+          {"field": "frp", "title": "FRP(Fire Radiation Power)","type":"quantitative"}
+         ]
+        },
+      "layer": [
+        {
+          "mark": {
+            "type": "circle"
+          },
+          "encoding": {
+            "size": {"field": "frp", 
+                    "title": "FRP (Fire Radiation Power)",
+                     "type": "quantitative",
+                     "legend": { "orient":"bottom-right"},
+                     "scale":{
+                       "type":"threshold",
+                       "domain":[500,1500,2000,3000],
+                       "range": [20,100,150,200,350]
+                     }
+                     },
+            "color": {"field": "brightness", 
+                      "title": "Brightness",
+                      "type": "quantitative",
+                      "legend": { "orient":"bottom-left"},
+                      "scale":{
+                        "domain":[300,500],
+                        "scheme":"reds"
+                      }          
+            }
+          }
+        },
+        {
+          "data": {
+            "url": "https://raw.githubusercontent.com/nityagithub/Assignment2/main/au_city_locations.csv"
+          },
+          "transform": [
+            {
+              "filter": {
+                "field": "city",
+                "oneOf": [
+                  "Bairnsdale East",
+                  "Albury",
+                  "Port Macquarie",
+                  "Kalgoorlie",
+                  "Canberra",
+                  "Esperance",
+                  "Kangaroo Island"                ]
+              }
+            }
+          ],
+          "encoding": {
+            "longitude": {"field": "lng", "type": "quantitative"},
+            "latitude": {"field": "lat", "type": "quantitative"},
+            "tooltip": null
+          },
+          "layer": [
+            {"mark": {"type": "circle", "color": "black"}, "encoding": {}},
+            {
+              "mark": {"type": "text", "align": "left", "dx": 5},
+              "encoding": {"text": {"field": "city"}}
+            }
+          ]
+        }
+
+      ]
+    }
+  ]
+}

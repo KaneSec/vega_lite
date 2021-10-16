@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>FIT3179 Visualisation 2</title>
+  <!-- Import Vega & Vega-Lite (does not have to be from CDN) -->
+  <script src="https://cdn.jsdelivr.net/npm/vega@5"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vega-lite@4"></script>
+  <!-- Import vega-embed -->
+  <script src="https://cdn.jsdelivr.net/npm/vega-embed@6"></script>
+  <!-- Import pure.css -->
+  <link rel="stylesheet" href="https://unpkg.com/purecss@2.0.3/build/pure-min.css" integrity="sha384-cg6SkqEOCV1NbJoCu11+bm0NvBRc8IYLRGXkmNrqUBfTjmMYwNKPWBTIKyw9mHNJ" crossorigin="anonymous">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Google font -->
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Display:wght@300&family=PT+Sans&family=Roboto+Condensed:wght@300&display=swap" rel="stylesheet">
+
+  <!-- custom style -->
+  <style>
+    *{
+      font-family: 'PT Sans', sans-serif;
+    }
+    h1{
+      font-weight: 1000;
+      font-size: 50px;
+    }
+    h2{
+      font-weight: 1000;
+      font-size: 20px;
+    }
+     body{
+       background-color: rgb(224, 162, 146);
+     }
+     .page{
+       width: 950px;  
+       height: 3000px;
+       background-color: #f8f5f1;   
+       margin: auto;
+       padding: 50px;
+       padding-top: 35px;
+    }
+    .vis-container{
+      width: 100%;
+    }
+    .description h2, h1{
+      margin-top:0px;
+    }
+    .description-right {
+      padding-left: 20px;
+    }
+    .description-left{
+      padding-right: 20px;
+    }
+    .pure-g{
+      margin-bottom: 20px;
+    }
+    .small-font{
+        font-size: 20px;
+    }
+  </style>
+</head>
+<body>
+
+ <div class="page">
+
+   <!-- pure grid group -->
+    <div class="pure-g">
+      <div class="pure-u-1-1">
+        <h1>The Australian Bushfires</h1>
+        <h2>Distribution of Bushfires across Australia</h2>
+        <p>Historically, Australian Bushfires have been immensely difficult to control and destroyed various communities and towns. More than <b>10 million hectares</b> of land was destroyed, burning through vegetation, wildlife, homes and killing many residents. <b>Aqua and Terra Satellites</b> by Nasa present variables correlated with bushfires, particularly the <b>Fire Radiation Point</b> and <b>Brightness</b>. Further studies of climate conditions of different regions prove to be stimulants of this natural disaster.</p>
+      </div>
+    </div>
+  <!-- end pure grid group -->
+
+    <!-- pure grid group -->
+    <div class="pure-g">
+        <div class="pure-u-1-1">
+          <div id="vis1" class="vis-container"></div>
+        </div>
+    </div>
+    <!-- end pure grid group -->
+   <!-- pure grid group -->
+    <div class="pure-g">
+      <div class="pure-u-1-1">
+        <p>This presents the distribution of fires across Australia with their respective <b>Brightness Temperature</b> and <b>Fire Radiation Power</b> in each area.
+          Predominantly, the bushfires are distributed along the coastline of Victoria and New South Wales. However, clusters do appear in the Northern and Southern regions of Australia.</p>
+      </div>
+    </div>
+  <!-- end pure grid group -->
+    <!-- pure grid group -->
+    <div class="pure-g">
+      <div class="pure-u-1-1">
+            <h3>Fire Prone Areas</h3>
+            <p> Some of the <i>regions most affected by Australian bushfires</i> include; Bairnsdale East, Bendigo, Esperance, Kalgoorie, Kangaroo Island and Mildura. Different climate conditions can prove to be more or less vulnerable to bushfires</p>
+          
+            <p>An <i>Australian Weather Dataset</i> focusing on the respective areas is used for intricate analysis to determine whether a correlation exists between climate variables and prevalence of bushfires. This <i> bubble plot</i> demonstrates
+            the climate of regions, based on the <b> windspeed, maximum temperature, and humidity.</b></p>
+          </div>
+        </div>
+        <div class="pure-u-1-1">
+          <div id="vis3"  class="vis-container"></div>
+        </div>
+      
+    <!-- end pure grid group -->
+   
+    <!-- pure grid group -->
+    <div class="pure-g">
+      <div class="pure-u-1-1">
+            <h3> NASA Satellites - Aqua and Terra</h3>
+            <p> Referring to a NASA published <a href= "https://terra.nasa.gov/about/terra-instruments/modis">article</a>, both Aqua and Terra satellites utilise <i>Moderate Resolution Imaging 
+            Spectroradiometer (MODIS)</i> to derive mathematical calculations relating to bushfires in Australia. The level of detection of <i>brightness</i> is prominent in higher
+            magnitudes by the Aqua satellite relative to the Terra satellite.</p>
+          </div>
+      </div>
+  <!-- end pure grid group -->
+
+    <!-- pure grid group -->
+    <div class="pure-g">
+      <div class="pure-u-1-2">
+          <div id="vis2"  class="vis-container"></div>
+        </div>
+      <div class="pure-u-1-2">
+          <div id="vis5"  class="vis-container"></div>
+        </div>
+    </div>
+    <!-- end pure grid group -->
+   
+   <!-- pure grid group -->
+    <div class="pure-g">
+      <div class="pure-u-1-1">
+        <h3>Credibility of NASA Satellites</h3>
+        <p>The measurements observed by Aqua and Terra Satellite is combined with a confidence level which indicates the precision and certainty of the numerical values of the <b>Fire Radiation Power</b> and <b>Brightness</b> included within the dataset.
+          The <i>scatterplot</i> determined the relationship between <b>Brightness</b> and <b>FRP</b> of the fires across Australia.</p>
+      </div>
+    </div>
+  <!-- end pure grid group -->
+  
+   <!-- pure grid group --> 
+   <div class="pure-g">
+        <div class="pure-u-1-1">
+          <div id="vis4" class="vis-container"></div>
+        </div>
+    </div>
+  <!-- end pure grid group -->
+  
+   <!-- pure grid group -->
+   <div class="pure-g">
+    <div class="pure-u-1-1">
+      <h2>Annual Patterns of Temperature (Fire Prone Areas)</h2>
+      <p>Some towns are commonly known to be affected by bushfires and have been recognised as 'fire prone areas'. The following graph is delves deeper into the climate (temperatures) of the town across the area.</p>
+    </div>
+  </div>
+<!-- end pure grid group -->
+  <!-- pure grid group -->
+  <div class="pure-g">
+      <div class="pure-u-1-1">
+        <div id="vis6" class="vis-container"></div>
+      </div>
+  </div>
+  <!-- end pure grid group -->
+
+
+  </div> <!-- end page -->
+   
+<script type="text/javascript">
+  var specVis1 = "proportionalmap.json";
+  var specVis2= "heatmap.json";
+  var specVis3= "bubbleplot.json";
+  var specVis4= "scatterplot.json";
+  var specVis5= "heatmap2.json";
+  var specVis6= "linegraph.json";
+  
+
+ 
+
+  vegaEmbed('#vis1', specVis1, {"actions": false}).then(function(result) {
+    // Access the Vega view instance (https://vega.github.io/vega/docs/api/view/) as result.view
+  }).catch(console.error);
+  
+   vegaEmbed('#vis2', specVis2, {"actions": false}).then(function(result) {
+    // Access the Vega view instance (https://vega.github.io/vega/docs/api/view/) as result.view
+  }).catch(console.error);
+
+  vegaEmbed('#vis3', specVis3, {"actions": false}).then(function(result) {
+    // Access the Vega view instance (https://vega.github.io/vega/docs/api/view/) as result.view
+  }).catch(console.error);
+
+  vegaEmbed('#vis4', specVis4, {"actions": false}).then(function(result) {
+    // Access the Vega view instance (https://vega.github.io/vega/docs/api/view/) as result.view
+  }).catch(console.error);
+          
+  vegaEmbed('#vis5', specVis5, {"actions": false}).then(function(result) {
+    // Access the Vega view instance (https://vega.github.io/vega/docs/api/view/) as result.view
+  }).catch(console.error);
+          
+  vegaEmbed('#vis6', specVis6, {"actions": false}).then(function(result) {
+    // Access the Vega view instance (https://vega.github.io/vega/docs/api/view/) as result.view
+  }).catch(console.error);
+          
+
+</script>
+</body>
+</html>

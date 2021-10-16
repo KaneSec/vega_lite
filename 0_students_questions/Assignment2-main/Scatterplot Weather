@@ -1,0 +1,86 @@
+{
+"$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+"data": {
+    "url": "https://raw.githubusercontent.com/nityagithub/Assignment2/main/weatherAUS%20-%20Copy.csv"
+},
+"height": 350,
+"width": 400,
+"params": [
+    {
+        "name": "town_selection",
+        "bind": {
+          "input": "select",
+          "options": [
+            "Albury",
+            "Bairnsdale East",
+            "Canberra",
+            "Esperance",
+            "Kalgoorlie",
+            "Kangaroo Island",
+            "Port Macquarie"
+            ],
+          "labels": [
+            "Albury",
+            "Bendigo",
+            "Port Macquarie",
+            "Kalgoorlie",
+            "Canberra",
+            "Esperance",
+            "Kangaroo Island"
+          ],
+          "name": "Town: "
+        }   
+    },
+    {   
+        "name": "year_selection",
+        "bind": {
+            "input": "select",
+            "options": [
+            "2014",
+            "2015",
+            "2016",
+            "2017"
+            ],
+            "labels": [
+            "2014",
+            "2015",
+            "2016",
+            "2017"
+            ],
+            "name": "Year: "
+        }
+    },
+    {
+        "name": "month_selection",
+        "bind": {
+          "input": "select",
+          "options": [
+            "12",
+            "1",
+            "2"
+          ],
+          "labels": [
+            "December",
+            "January",
+            "February"
+          ],
+          "name": "Select Month: "
+        }
+    }
+    ],
+    "transform": [
+    {"filter": "datum.Location == town_selection"},
+    {"filter": "year(datum.Date) == year_selection"},
+    {"filter":"month(datum.Date) == month_selection"}
+],
+
+  "mark": "circle",
+  "encoding": {
+    "x": {"field": "WindSpeed", "type": "quantitative","scale": {"domain": [0,50]}},
+    "y": {"field": "MaxTemp", "type": "quantitative"},
+    "size": {"field": "Humidity", "type": "quantitative"},        "tooltip": [
+          {"field": "WindSpeed", "title": "Windspeed", "type": "quantitative"},
+          {"field": "MaxTemp", "title": "Maximum Temperature", "type": "quantitative"},
+          {"field": "Humidity", "title": "Confidence", "type": "quantitative"}]
+  }
+}

@@ -11,6 +11,6 @@
         }
     ],
     "settings": {
-        "liveServer.settings.multiRootWorkspaceName": "test"
+        "liveServer.settings.multiRootWorkspaceName": "vega_lite"
     }
 }
