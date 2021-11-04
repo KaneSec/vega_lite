@@ -1,4 +1,4 @@
-Customer,Inter_arrival times,Service times,Arrival Time,Depature time
+Customer,Inter_arrival times,Service times,Arrival Time,Depature Time
 1,0.181,0.303,0.181,0.484
 2,0.126,2.55,0.307,2.857
 3,0.175,0.442,0.482,0.924
