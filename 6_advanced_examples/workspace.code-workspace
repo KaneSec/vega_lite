@@ -8,9 +8,12 @@
         },
         {
             "path": "../../Website/test"
+        },
+        {
+            "path": "../../Website/sa1"
         }
     ],
     "settings": {
-        "liveServer.settings.multiRootWorkspaceName": "vega_lite"
+        "liveServer.settings.multiRootWorkspaceName": "sa1"
     }
 }
